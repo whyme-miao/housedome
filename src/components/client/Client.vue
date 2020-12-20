@@ -12,15 +12,15 @@
             <!-- 搜索与添加区 -->
             <el-row :gutter="20">
                 <el-col :span="6">
-                    <el-input clearable placeholder="请输入客户ID" v-model="queryInfo.query" @clear="getClientList" >
-                        <el-button style="background-color:#97d8ae;" slot="append" icon="el-icon-search" @click="getClientListById"></el-button>
-                    </el-input>
-                </el-col>
-                <el-col :span="6">
                     <el-input clearable placeholder="输入客户名称" v-model="queryInfo.name" @clear="getClientList" >
                         <el-button style="background-color:#97d8ae;" slot="append" icon="el-icon-search" @click="getClientListByName"></el-button>
                     </el-input>
                 </el-col>
+                <el-col :span="6">
+                    <el-input clearable placeholder="请输入客户ID" v-model="queryInfo.query" @clear="getClientList" >
+                        <el-button style="background-color:#97d8ae;" slot="append" icon="el-icon-search" @click="getClientListById"></el-button>
+                    </el-input>
+                </el-col>         
             </el-row>
             <!-- 客户列表区 -->
             <el-table

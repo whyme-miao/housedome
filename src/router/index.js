@@ -8,7 +8,7 @@ import Service from '../components/employee/Service.vue'
 import AddEdit from '../components/employee/AddEdit.vue'
 import Order from '../components/order/Order.vue'
 import Client from '../components/client/Client.vue'
-// import ShowEchart from '../components/echart/ShowEchart.vue'
+import Rate from '../components/client/Rate.vue'
 
 
 Vue.use(VueRouter)
@@ -27,7 +27,7 @@ const routes = [
       { path: '/service', component: Service },
       { path: '/addedit', component: AddEdit,},
       { path: '/client', component: Client },
-      // { path: '/show', component: ShowEchart },
+      { path: '/rate', component: Rate },
     ]
   }
 

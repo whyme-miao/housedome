@@ -25,7 +25,9 @@
                         </div>
                     </div>
                 </el-card>
+                <!-- 客户留言 --> 
             </el-col>
+            
             <el-col :span="13">
                 <!-- 顾客和订单数量 -->
                 <div class="num">
@@ -75,7 +77,8 @@ export default {
             level: 0,
             vclient: 0,
             vorder:0,
-            time: new Date().toLocaleString()
+            time: new Date().toLocaleString(),
+            // messagelist: []
 
         }
     },
@@ -85,9 +88,16 @@ export default {
         this.level = window.sessionStorage.getItem('level')
         this.getClientList()
         this.getOrderList()
+        // this.getMessage()
     },
     methods: {
-        // 获取顾客总数
+        // 获取留言列表
+        // getMessage(ev) {
+        //     if (ev.originalEvent.key!='messagelist') return; // 限定接收信息的键，这里为message
+        //     var messagelist=JSON.parse(ev.originalEvent.newValue);
+        //     //信息处理
+        //     if (!messagelist) return; // 忽略空信息
+        // },
         async getClientList() {
             const {data: res} = await this.$http.get('/user/alluser')
             this.vclient = res.length

@@ -20,7 +20,7 @@
                         ></el-button>
                     </el-input>
                 </el-col>
-                <el-col :span="6">
+                <!-- <el-col :span="6">
                     <el-input clearable placeholder="请输入服务类型" v-model="queryInfo.type" @clear="getServiceAndSalary">
                         <el-button 
                         slot="append" 
@@ -29,7 +29,7 @@
                         @click="getServiceListByType"
                         ></el-button>
                     </el-input>
-                </el-col>
+                </el-col> -->
             </el-row>
 
             <!-- 全部员工的服务类型与薪水 -->

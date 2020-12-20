@@ -112,6 +112,12 @@ export default {
                             "authName": "客户列表",
                             "path": "client",
                             "children": []
+                        },
+                        {
+                            "id": 44,
+                            "authName": "客户评分",
+                            "path": "rate",
+                            "children": []
                         }
                     ]
                 },
