@@ -86,18 +86,22 @@ export default {
             this.serviceList = res
         },
         async getServiceListById() {
+            if(!this.queryInfo.query) {
+                return this.$message.warning('请输入员工Id')
+            }
             const {data: res} =  await this.$http.get(`service/${this.queryInfo.query}`)
             this.serviceList = res
 
         },
 
         // 根据服务类型查询员工
-        async getServiceListByType() {
-            const data = await this.$http.post('service/employee',{
-                type: this.queryInfo.type
-            })
-            this.serviceList = data.data
-        },
+        // async getServiceListByType() {
+        //     const data = await this.$http.post('service/employee',{
+        //         type: this.queryInfo.type
+        //     })
+        //     this.serviceList = data.data
+            
+        // },
 
         tableRowClassName({row, rowIndex}) {
           if(rowIndex%2==1){

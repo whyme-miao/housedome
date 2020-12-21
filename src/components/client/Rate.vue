@@ -21,11 +21,15 @@
             <el-table
                 :header-cell-style="{background:'#aed2f6',color:'black'}"
                 :data="ratelist" border >
-                <el-table-column
+                <!-- <el-table-column
                 align='center'
                 type="index"
                 width="60px"
-                label="序号"></el-table-column>
+                label="序号"></el-table-column> -->
+                <el-table-column
+                align='center' 
+                prop="id"
+                label="客户ID"></el-table-column>
                 <el-table-column
                 align='center'
                 prop="rate"
@@ -82,15 +86,27 @@ export default {
                 return this.$message.warning('获取列表失败')
             }
             this.ratelist = res
+            this.ratelist.forEach(item => {
+                this.$http.post("user/info", {name: item.name}).then(result => {
+                    // console.log(result.data)
+                    item.id = result.data[0].id
+                    // console.log(item.id)
+                })
+            })  
         },
         // 根据id获取评分信息
         async getRateListById() {
+            if(!this.queryInfo.query) {
+                return this.$message.warning('请输入客户Id')
+            }
             const {data: res} = await this.$http.get(`rate/user/${this.queryInfo.query}`)
             res.map(item => {
                 item.employeename = item.employee
+                item.id = this.queryInfo.query
             })
-            console.log(res)
+            // console.log(res)
             this.ratelist = res
+            
         }
     }
 }

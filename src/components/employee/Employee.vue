@@ -280,7 +280,9 @@ export default {
         },
         // 通过Id搜索员工
         async getEmployeeListById() {
-            
+            if(!this.queryInfo.query) {
+                return this.$message.warning('请输入员工Id')
+            }
             const {data :res }= await this.$http.get(`employee/${this.queryInfo.query}`)
             // console.log(res);
             this.employeeList = []

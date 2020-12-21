@@ -82,12 +82,18 @@ export default {
         },
         // 通过id获取客户信息
         async getClientListById() {
+            if(!this.queryInfo.query) {
+                return this.$message.warning('请输入客户Id')
+            }
             const {data: res} = await this.$http.get(`user/info/${this.queryInfo.query}`)
             this.clientlist = res
         },
         // 模糊查询客户名称
         async getClientListByName() {
             // console.log(this.queryInfo.name)
+            if(!this.queryInfo.name) {
+                return this.$message.warning('请输入客户名称')
+            }
             const {data: res} = await this.$http.post('user/info/', {
                 name:this.queryInfo.name
             })

@@ -12,7 +12,7 @@
             <!-- 搜索与添加区  @click="getEmployeeListById"-->
             <el-row :gutter="20">
                 <el-col :span="6">
-                    <el-input clearable placeholder="请输入顾客ID" v-model="queryInfo.query" @clear="getOrderList" >
+                    <el-input clearable placeholder="请输入客户ID" v-model="queryInfo.query" @clear="getOrderList" >
                         <el-button style="background-color:#fdf6ec;" slot="append" icon="el-icon-search" @click="getOrderListById"></el-button>
                     </el-input>
                 </el-col>
@@ -28,6 +28,9 @@
                 <el-table-column 
                 prop="employeename"
                 label="服务人员"></el-table-column>
+                <el-table-column 
+                prop="userid"
+                label="客户ID"></el-table-column>
                 <el-table-column 
                 prop="hiredate"
                 label="创建时间">
@@ -100,14 +103,20 @@ export default {
     methods: {
         async getOrderList () {
             const { data : res} = await this.$http.get('/user/allorder')
-            this.orderlist = res
-            // console.log(this.orderlist)
+            this.orderlist = res       
         },
         // 查看某个顾客订单
         async getOrderListById() {
+            if(!this.queryInfo.query) {
+                return this.$message.warning('请输入客户Id')
+            }
             const {data: res} = await this.$http.get(`user/order/${this.queryInfo.query}`)
-            console.log(res)
+            res.map(item => {
+                item.userid = this.queryInfo.query
+            })
+            // console.log(res)
             this.orderlist = res
+            
         },
         async orderStatusChanged(orderInfo) {
             const data = await this.$http.put('user/order', {
